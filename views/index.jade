@@ -1,0 +1,32 @@
+extends layout
+
+block styles
+    link(rel='stylesheet', href='/stylesheets/login.css')
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+      .column
+        h2.ui.teal.image.header          
+          .content
+            | Login Here
+        form.ui.large.form
+          .ui.stacked.segment
+            .field
+              .ui.left.icon.input
+                i.user.icon
+                input(type='text' name='email' placeholder='E-mail address')
+            .field
+              .ui.left.icon.input
+                i.lock.icon
+                input(type='password' name='password' placeholder='Password')
+            .ui.fluid.large.teal.submit.button Login
+          .ui.error.message
+        .ui.message
+          | Forgot Password? 
+          a(href='#') Reset
+        
+    
+
+
+block scripts
+    script(src="/javascripts/login.js")
