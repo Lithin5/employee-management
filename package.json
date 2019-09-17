@@ -1,0 +1,22 @@
+{
+  "name": "employee-management",
+  "version": "1.0.0",
+  "description": "Employee Management app for Software Firms",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lithin5/employee-management.git"
+  },
+  "author": "Lithin Kuriachan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lithin5/employee-management/issues"
+  },
+  "homepage": "https://github.com/Lithin5/employee-management#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
