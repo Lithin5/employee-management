@@ -11,7 +11,9 @@ block content
       #login-container          
         h2(class="login-titile")
           | Login
-        form(action="/logincheck" method="post")
+        if error_msg != ''
+          | Here
+        form(action="/users/login" method="post")
           .field
             .spacer-50
             .ui.left.icon.input.text-custom            
@@ -20,7 +22,7 @@ block content
             .spacer-25
             .ui.left.icon.input.text-custom            
               i.lock.icon
-              input(type='password' name='email' placeholder='Password' required="true")        
+              input(type='password' name='password' placeholder='Password' required="true")        
             .spacer-25
             button( class="ui fluid large teal submit button" type="submit")
               |Login
