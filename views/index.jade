@@ -1,32 +1,29 @@
 extends layout
 
 block styles
-    link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet' href='/stylesheets/login.css')
 
 block content
-    .ui.middle.aligned.center.aligned.grid
-      .column
-        h2.ui.teal.image.header          
-          .content
-            | Login Here
-        form.ui.large.form
-          .ui.stacked.segment
-            .field
-              .ui.left.icon.input
-                i.user.icon
-                input(type='text' name='email' placeholder='E-mail address')
-            .field
-              .ui.left.icon.input
-                i.lock.icon
-                input(type='password' name='password' placeholder='Password')
-            .ui.fluid.large.teal.submit.button Login
-          .ui.error.message
-        .ui.message
-          | Forgot Password? 
-          a(href='#') Reset
-        
-    
-
+  img(id="background-image" src="/images/background-img.jpg")
+  #image_overlay
+  .ui.middle.aligned.center.aligned.grid
+    .column                        
+      #login-container          
+        h2(class="login-titile")
+          | Login
+        form(action="/logincheck" method="post")
+          .field
+            .spacer-50
+            .ui.left.icon.input.text-custom            
+              i.user.icon
+              input(type='text' name='email' placeholder='Username' required="true" )        
+            .spacer-25
+            .ui.left.icon.input.text-custom            
+              i.lock.icon
+              input(type='password' name='email' placeholder='Password' required="true")        
+            .spacer-25
+            button( class="ui fluid large teal submit button" type="submit")
+              |Login
 
 block scripts
-    script(src="/javascripts/login.js")
+  script(src="/javascripts/login.js")

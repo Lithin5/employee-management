@@ -1,12 +1,76 @@
+html,body{
+    margin: 0px;
+    padding: 0px;
+}
 body {
     background-color: #DADADA;
 }
 body > .grid {
     height: 100%;
 }
-.image {
-    margin-top: -100px;
-}
 .column {
     max-width: 450px;
+}
+#background-image{
+    top:0px;
+    left:0px;
+    margin: 0px;
+    width: 100%!important;
+    height:100%!important;
+    position: fixed;
+    z-index: 0!important;
+    object-fit: cover;
+}
+#image_overlay{
+    top:0px;
+    left:0px;
+    margin: 0px;
+    width: 100%!important;
+    height:100%!important;
+    position: fixed;
+    z-index: 0!important;
+    object-fit: cover;
+    background-color: rgba(255,255,255,0.1);
+}
+#login-container{    
+    display: inline-block;
+    width:320px;    
+    background-color:rgba(255, 255, 255,9);
+    padding: 25px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    box-shadow: 1px 1px 4px 1px #525252;
+    border-radius: 3px;
+}
+.login-titile{
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #636363;
+}
+.input-container{
+    margin-top: 35px;
+}
+.input-container input{
+    width: 100%;
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid #918a8a;
+    color: #000;
+    padding: 3px;
+    font-size: 15px;
+}
+.input-container label{
+    display: block;
+    color: #fff;
+    text-align: left;
+}
+.text-custom{
+    width: 100%!important;
+}
+.spacer-50{
+    margin-top: 50px;    
+}
+.spacer-25{
+    margin-top: 25px;    
 }
