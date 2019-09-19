@@ -3,7 +3,11 @@ block head
     title Users
 block styles
     link(rel='stylesheet' href='/stylesheets/login.css')  
-block content      
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section User List    
     .ui.segment
         table.ui.celled.striped.table
             thead

@@ -17,4 +17,10 @@ router.get('/users', ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
+
+router.get('/users/addusers', ensureAuthenticated, (req, res) =>
+  res.render('access/adduser', {
+    user: req.user
+  })
+);
 module.exports = router;
