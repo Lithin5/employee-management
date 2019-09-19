@@ -16,6 +16,27 @@ const UserSchema = new mongoose.Schema({
     },
     power: {
         type: Number
+    },
+    gender: {
+        type: String
+    },
+    dob: {
+        type: Date
+    },
+    address: {
+        type: String
+    },
+    pincode: {
+        type: String
+    },
+    status: {
+        type: String
+    },
+    designation: {
+        type: String
+    },
+    profilepicture: {
+        type: String
     }
 });
 

@@ -4,19 +4,17 @@ html
     block head
       title= "Login Here"
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel='stylesheet', href='/dist/semantic-ui/semantic.min.css')
+    link(rel='stylesheet' href='/dist/semantic-ui/semantic.min.css')
     link(rel='stylesheet' href='/stylesheets/common.css')
     block styles           
   body            
     include access/includes/sidemenu            
     .pusher        
-        include access/includes/topmenu
-        .ui.main.text.container        
-            |slkdjfk shdfkjhsd        
+      include access/includes/topmenu
+      .ui.container.mainmargin                     
         block content        
-        include access/includes/footer
+      include access/includes/footer
     script(src="/javascripts/jquery-3.4.1.min.js")
     script(src="/dist/semantic-ui/semantic.min.js")    
     script(src="/javascripts/common.js")
     block scripts
-    

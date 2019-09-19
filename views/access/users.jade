@@ -1,0 +1,38 @@
+extends ../accesslayout
+block head
+    title Users
+block styles
+    link(rel='stylesheet' href='/stylesheets/login.css')  
+block content      
+    .ui.segment
+        table.ui.celled.striped.table
+            thead
+                tr
+                    th(colspan='5')
+                        | Users List
+                        a.ui.right.floated.small.primary.labeled.icon.button(href="/users/addusers")
+                            i.user.icon
+                            |  Add User                                            
+                tr
+                    th Name
+                    th Email 
+                    th Designation                    
+                    th Status
+                    th Action
+
+            tbody
+                tr
+                    td Lithin Kuriachan
+                    td lithinonline@gmail.com
+                    td Software Engineer
+                    td Active
+                    td 
+                        a(href="/users/viewuser")
+                            i.file.outline.icon
+                            |View
+                        |&nbsp;&nbsp;&nbsp;
+                        a(href="/users/viewuser")
+                            i.edit.outline.icon
+                            |Edit
+
+
