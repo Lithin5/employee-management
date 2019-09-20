@@ -8,4 +8,10 @@ $(document).ready(function () {
     $('#btn-show').click(function () {
         $('.sidecustommenu.sidebar').sidebar('toggle');
     });
+    $('#resetpasswordconfirm').click(function(ev){
+        ev.preventDefault();
+        if(confirm("Are sure you want to remove this account?")){
+            window.location = $(this).attr('href');
+        }
+    })
 });

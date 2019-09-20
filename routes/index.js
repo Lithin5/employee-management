@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/profilepictures')
   },
-  filename: function (req, file, cb) {    
+  filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + cpath.extname(file.originalname))
   }
 })
@@ -30,7 +30,7 @@ router.get('/users', ensureAuthenticated, (req, res) => {
     res.render('access/users', {
       user: req.user,
       user_list: users
-    })
+    });
   });
 }
 );
@@ -45,9 +45,9 @@ router.post('/users/saveuser', upload.single('file'), ensureAuthenticated, (req,
   newuser.password = "Password@1";
   newuser.power = "2";
   newuser.status = "active";
-  if(req.file.filename){
+  if (typeof req.file !== "undefined") {
     newuser.profilepicture = req.file.filename;
-  }  
+  }
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newuser.password, salt, (err, hash) => {
       if (err) throw err;
@@ -66,4 +66,61 @@ router.post('/users/saveuser', upload.single('file'), ensureAuthenticated, (req,
   });
 }
 );
+router.get('/users/viewuser/:userId', ensureAuthenticated, (req, res) => {
+  User.findOne({ "_id": req.params.userId }, function (err, cuser) {
+    res.render('access/viewuser', {
+      user: req.user,
+      cuser: cuser
+    });
+  });
+});
+router.post('/users/updateuser/:userId', upload.single('file'), ensureAuthenticated, (req, res) => {
+  var updateuserobj = req.body;
+  if (typeof req.file != "undefined") {
+    updateuserobj.profilepicture = req.file.filename;
+    User.findOne({ "_id": req.params.userId }, function (err, cuser) {
+      if (cuser.profilepicture != "") {
+        var dellink = 'public/profilepictures/' + cuser.profilepicture;
+        if (fs.existsSync(dellink)) {
+          fs.unlink(dellink, (err) => {
+            if (err) throw err;
+            //console.log('path/file.txt was deleted');
+          });
+        }
+      }
+    });
+  }
+  User.findByIdAndUpdate(req.params.userId, updateuserobj, function (err, cuser) {
+    req.flash(
+      'success_msg',
+      'User Account has been updated'
+    );
+    res.redirect('/users/viewuser/' + req.params.userId);
+  });
+});
+router.get('/users/removeaccount/:userId', ensureAuthenticated, (req, res) => {
+  User.deleteOne({ "_id": req.params.userId }, function (err, response) {
+    req.flash(
+      'success_msg',
+      'User Account has been Deleted!!!'
+    );
+    res.redirect('/users/');
+  });
+});
+router.get('/users/resetpassword/:userId', ensureAuthenticated, (req, res) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash("Password@1", salt, (err, hash) => {
+      if (err) throw err;
+      var updateuserobj = {password :hash};
+      User.findByIdAndUpdate(req.params.userId, updateuserobj, function (err, cuser) {
+        req.flash(
+          'success_msg',
+          'Password has been reseted to Password@1'
+        );
+        res.redirect('/users/viewuser/' + req.params.userId);
+      });
+    });
+  });
+
+});
 module.exports = router;

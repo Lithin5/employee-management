@@ -6,8 +6,11 @@
   .right.menu
     .ui.dropdown.pointing.link.item
       .text
-        img.ui.avatar.image(src="/images/sample-profile.png")
-        i.dropdown.icon
+          if user.profilepicture
+            img.ui.avatar.image(src="/profilepictures/#{user.profilepicture}")
+          else  
+            img.ui.avatar.image(src="/images/sample-profile.png")
+          i.dropdown.icon
       .menu
         a.item(href="/")
           i.user.outline.icon

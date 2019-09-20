@@ -34,23 +34,19 @@ block content
                         td(colspan="5")
                             p.table_norecord| No Record has been found!!!                
                 else
-                    each user in user_list
+                    each cuser in user_list
                         tr
-                            td #{user.name}
-                            td #{user.email}
-                            td #{user.designation}
+                            td #{cuser.name}
+                            td #{cuser.email}
+                            td #{cuser.designation}
                             td 
-                                if user.status == "active"
+                                if cuser.status == "active"
                                     | Active
                                 else    
                                     | Inactive 
                             td 
-                                a(href="/users/viewuser")
-                                    i.file.outline.icon
-                                    |View
-                                |&nbsp;&nbsp;&nbsp;
-                                a(href="/users/viewuser")
+                                a(href="/users/viewuser/#{cuser.id}")                                    
                                     i.edit.outline.icon
-                                    |Edit
+                                        | View/Update
 
 

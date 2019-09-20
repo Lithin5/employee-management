@@ -1,8 +1,11 @@
 .ui.sidebar.vertical.menu.sidecustommenu
   .item-top-sidemenutitle
-    img.sidemenu-profileimg(src="/images/sample-profile.png")
+    if user.profilepicture
+      img.sidemenu-profileimg(src="/profilepictures/#{user.profilepicture}")
+    else
+      img.sidemenu-profileimg(src="/images/sample-profile.png")
     h3.sidebar-profile-heading  
-      | Sample Name
+      | #{user.name}
   a.item.echo(href="/dashboard" class="myd-active")
     i.expand.icon.dash-icons
     |  Dashboard

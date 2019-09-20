@@ -22,7 +22,9 @@ body {
   }  
   .sidemenu-profileimg{
       width: 152px;
-      border: 8px solid #e3e3e3;      
+      border: 8px solid #e3e3e3;            
+      height: 152px;
+      object-fit: cover;
   }
   .sidebar-profile-heading{
       margin: 5px;
@@ -34,4 +36,11 @@ body {
   .table_norecord{
     text-align: center;
     color: red;
+  }
+  .centerimagemaindiv{
+    text-align: center;
+  }
+  .main_profile{
+    width:150px;
+    border:8px solid #c7c7c7;
   }
