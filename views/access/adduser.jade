@@ -11,3 +11,33 @@ block content
         i.right.chevron.icon.divider
         .active.section Add User    
     .ui.segment
+        h4.ui.header.horizontal.divider
+            | New User
+        .ui.form    
+            .fields
+                .four.wide.field
+                    label  Full Name
+                    input(type="text", placeholder="Full Name", required="true")
+                .four.wide.field
+                    label  Email
+                    input(type="text", placeholder="Email", required="true")
+                .four.wide.field
+                    label  Gender
+                    .field
+                        .ui.radio.checkbox
+                            input(type='radio' name='gender' checked='checked')
+                            label Male
+                    .field
+                        .ui.radio.checkbox
+                            input(type='radio' name='gender' checked='checked')
+                            label Female
+                .four.wide.field
+                    label  DOB
+                    input(type="date", placeholder="Date of Birth")
+            .fields
+                .four.wide.field
+                    label  Designation
+                    input(type="text", placeholder="Designation" )
+                .four.wide.field
+                    label  Address
+                    textarea(type="text", placeholder="Address" rows="1")
