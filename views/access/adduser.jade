@@ -13,7 +13,7 @@ block content
     .ui.segment
         h4.ui.header.horizontal.divider
             | New User        
-        form.ui.form(action="/users/saveuser",method="post")
+        form.ui.form(action="/users/saveuser",method="post", enctype="multipart/form-data")
             .fields
                 .four.wide.field
                     label  Full Name
@@ -44,8 +44,13 @@ block content
                 .four.wide.field
                     label  Zip/Pin Code
                     input(type="number",name="pincode", placeholder="Zip/Pin Code" )
+                .four.wide.field
+                    label Browse Profile Picture
+                    input(type="file", name="file", accept="image/*")
             .fields 
-                .sixteen.wide.field
+                .sixteen.wide.field                    
                     button.ui.right.floated.primary.button 
                         | Save
+                    a.ui.right.floated.button(href="/users")
+                        | Cancel
 

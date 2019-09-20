@@ -29,7 +29,7 @@ block content
                     th Action
 
             tbody
-                if !user_list
+                if Object.keys(user_list).length <= 0
                     tr
                         td(colspan="5")
                             p.table_norecord| No Record has been found!!!                
