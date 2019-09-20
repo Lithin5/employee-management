@@ -9,6 +9,10 @@ block content
         i.right.chevron.icon.divider
         .active.section User List    
     .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+
         table.ui.celled.striped.table
             thead
                 tr
@@ -25,18 +29,28 @@ block content
                     th Action
 
             tbody
-                tr
-                    td Lithin Kuriachan
-                    td lithinonline@gmail.com
-                    td Software Engineer
-                    td Active
-                    td 
-                        a(href="/users/viewuser")
-                            i.file.outline.icon
-                            |View
-                        |&nbsp;&nbsp;&nbsp;
-                        a(href="/users/viewuser")
-                            i.edit.outline.icon
-                            |Edit
+                if !user_list
+                    tr
+                        td(colspan="5")
+                            p.table_norecord| No Record has been found!!!                
+                else
+                    each user in user_list
+                        tr
+                            td #{user.name}
+                            td #{user.email}
+                            td #{user.designation}
+                            td 
+                                if user.status == "active"
+                                    | Active
+                                else    
+                                    | Inactive 
+                            td 
+                                a(href="/users/viewuser")
+                                    i.file.outline.icon
+                                    |View
+                                |&nbsp;&nbsp;&nbsp;
+                                a(href="/users/viewuser")
+                                    i.edit.outline.icon
+                                    |Edit
 
 

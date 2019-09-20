@@ -12,32 +12,40 @@ block content
         .active.section Add User    
     .ui.segment
         h4.ui.header.horizontal.divider
-            | New User
-        .ui.form    
+            | New User        
+        form.ui.form(action="/users/saveuser",method="post")
             .fields
                 .four.wide.field
                     label  Full Name
-                    input(type="text", placeholder="Full Name", required="true")
+                    input(type="text", name="name", placeholder="Full Name", required="true")
                 .four.wide.field
                     label  Email
-                    input(type="text", placeholder="Email", required="true")
+                    input(type="email", name="email", placeholder="Email", required="true")
                 .four.wide.field
                     label  Gender
                     .field
                         .ui.radio.checkbox
-                            input(type='radio' name='gender' checked='checked')
-                            label Male
+                            input(type='radio' id="id_gendermale" name='gender' checked='checked')
+                            label(for="id_gendermale") Male                                                        
                     .field
                         .ui.radio.checkbox
-                            input(type='radio' name='gender' checked='checked')
-                            label Female
+                            input(type='radio' id="id_genderfemale" name='gender')
+                            label(for="id_genderfemale") Female
                 .four.wide.field
                     label  DOB
-                    input(type="date", placeholder="Date of Birth")
+                    input(type="date",name="dob", placeholder="Date of Birth")
             .fields
                 .four.wide.field
                     label  Designation
-                    input(type="text", placeholder="Designation" )
+                    input(type="text",name="designation", placeholder="Designation" )
                 .four.wide.field
                     label  Address
-                    textarea(type="text", placeholder="Address" rows="1")
+                    textarea(type="text",name="address", placeholder="Address" rows="1")
+                .four.wide.field
+                    label  Zip/Pin Code
+                    input(type="number",name="pincode", placeholder="Zip/Pin Code" )
+            .fields 
+                .sixteen.wide.field
+                    button.ui.right.floated.primary.button 
+                        | Save
+

@@ -31,3 +31,7 @@ body {
   .mainmargin{
     padding-top:62px;
   }
+  .table_norecord{
+    text-align: center;
+    color: red;
+  }
