@@ -16,7 +16,7 @@ block content
     .ui.segment               
         h4.ui.header.horizontal.divider
             | View/Update User 
-        form.ui.form(action="/users/updateuser/#{cuser._id}",method="post", enctype="multipart/form-data")
+        form.ui.form(action="/users/updateuser/#{cuser._id}" method="post" enctype="multipart/form-data")
             .fields
                 if cuser.profilepicture != ""
                     .sixteen.wide.field
@@ -26,10 +26,10 @@ block content
             .fields
                 .four.wide.field
                     label  Full Name
-                    input(type="text", name="name", placeholder="Full Name", required="true",value="#{cuser.name}")
+                    input(type="text" name="name" placeholder="Full Name" required="true" value="#{cuser.name}")
                 .four.wide.field
                     label  Email
-                    input(type="email", name="email", placeholder="Email", required="true" value="#{cuser.email}" )
+                    input(type="email" name="email" placeholder="Email" required="true" value="#{cuser.email}" )
                 .four.wide.field
                     label  Gender
                     .field
@@ -42,21 +42,21 @@ block content
                             label(for="id_genderfemale") Female
                 .four.wide.field
                     label  DOB
-                    input(type="date",name="dob", placeholder="Date of Birth" value=(typeof cuser.dob === "undefined" ? "" : cuser.dob))
+                    input(type="date" name="dob" placeholder="Date of Birth" value=(typeof cuser.dob === "undefined" ? "" : cuser.dob))
             .fields
                 .four.wide.field
                     label  Designation
-                    input(type="text",name="designation", placeholder="Designation", value=(typeof cuser.designation === "undefined" ? "" : cuser.designation) )
+                    input(type="text" name="designation" placeholder="Designation", value=(typeof cuser.designation === "undefined" ? "" : cuser.designation) )
                 .four.wide.field
                     label  Address
-                    textarea(type="text",name="address", placeholder="Address" rows="1" )
+                    textarea(type="text" name="address" placeholder="Address" rows="1" )
                         | #{typeof cuser.address === "undefined" ? "" : cuser.address}
                 .four.wide.field
                     label  Zip/Pin Code
-                    input(type="number",name="pincode", placeholder="Zip/Pin Code" value=(typeof cuser.pincode === "undefined" ? "" : cuser.pincode) )
+                    input(type="number" name="pincode" placeholder="Zip/Pin Code" value=(typeof cuser.pincode === "undefined" ? "" : cuser.pincode) )
                 .four.wide.field
                     label Browse Profile Picture
-                    input(type="file", name="file", accept="image/*")
+                    input(type="file" name="file" accept="image/*")
             .fields 
                 .sixteen.wide.field                    
                     a.ui.button.red(href="/users/removeaccount/#{cuser.id}" id="resetpasswordconfirm")
@@ -70,6 +70,49 @@ block content
     .ui.segment               
         h4.ui.header.horizontal.divider
             | Bank Account
-    .ui.segment               
+        form.ui.form(action="/users/updateuser/#{cuser._id}" method="post" )
+            .fields
+                .four.wide.field
+                    label  Account Name
+                    input(type="text" name="designation" placeholder="Account Name", value="" )
+                .four.wide.field
+                    label  Account No
+                    input(type="number" name="designation" placeholder="Account No", value="" )
+                .four.wide.field
+                    label  IFSC Code
+                    input(type="text" name="designation" placeholder="IFSC Code", value="" )
+                .four.wide.field
+                    label  Location
+                    input(type="text" name="designation" placeholder="Location", value="" )            
+    .ui.segment(id="ctcionformation")               
         h4.ui.header.horizontal.divider
             | CTC Information 
+        form.ui.form(action="/users/updateuser/#{cuser._id}" method="post" )
+            .fields
+                .four.wide.field    
+                    label  Category
+                    select.ui.fluid.search.dropdown(name='skills')                        
+                        option(value='basicpay') Basic Pay
+                        option(value='HRA') HRA
+                .four.wide.field
+                    label Amount
+                    input(type="number" name="designation" placeholder="Amount", value="" autocomplete="false" )
+                .four.wide.field
+                    button.ui.button.ctc_addbtn_space    
+                        | Add
+        table.ui.table  
+            thead
+                tr  
+                    th Category
+                    th Payment
+            tbody   
+                tr  
+                    td Sample
+                    td 2500                        
+                    
+        .ui.message
+            .header
+                | Information
+            p
+                | Category can be updated 
+                a(href="/settings/ctccategory") Here
