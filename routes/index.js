@@ -71,16 +71,21 @@ router.post('/users/saveuser', upload.single('file'), ensureAuthenticated, (req,
   });
 }
 );
-router.get('/users/viewuser/:userId', ensureAuthenticated, (req, res) => {
+router.get('/users/viewuser/:userId', ensureAuthenticated, async (req, res) => {  
   User.findOne({ "_id": req.params.userId }, function (err, cuser) {
     CTCCategoryList.find({}, function (err, ctccategorylist) {
       BankAccount.findOne({ "userid": req.params.userId }, (err, BnkAcc) => {
-        res.render('access/viewuser', {
-          user: req.user,
-          cuser: cuser,
-          ctccategorylist: ctccategorylist,
-          bankacc: BnkAcc
-        });
+        CtcData.find()
+          .populate('ctccategoryid')
+          .then(ctcdata => {
+            res.render('access/viewuser', {
+              user: req.user,
+              cuser: cuser,
+              ctccategorylist: ctccategorylist,
+              bankacc: BnkAcc,
+              ctcdatalist: ctcdata
+            });
+          });
       });
     });
   });
@@ -156,6 +161,29 @@ router.post('/users/updateuserbank/:userId', ensureAuthenticated, (req, res) => 
       res.redirect('/users/viewuser/' + req.params.userId);
     }
     console.log(bankdata);
+  });
+});
+router.post('/users/addctcdetails/:userId', ensureAuthenticated, (req, res) => {
+  var nctcdetails = new CtcData(req.body);
+  nctcdetails.userid = req.params.userId;
+  nctcdetails
+    .save()
+    .then(user => {
+      req.flash(
+        'success_msg',
+        'New CTC Data has been added!!!'
+      );
+      res.redirect('/users/viewuser/' + req.params.userId + "#ctcionformation");
+    })
+    .catch(err => console.log(err));
+});
+router.get('/users/removectcdata/:userId/:ctcdataId',ensureAuthenticated,(req,res)=>{
+  CtcData.deleteOne({ "_id": req.params.ctcdataId }, function (err, response) {
+    req.flash(
+      'success_msg',
+      'User Account has been Deleted!!!'
+    );
+    res.redirect('/users/viewuser/' + req.params.userId + "#ctcionformation");
   });
 });
 module.exports = router;

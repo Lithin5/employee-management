@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-
+const CtcCategory = require("./ctccategory");
+const Schema = mongoose.Schema;
 
 const CtcDataSchema = new mongoose.Schema({
     ctccategoryid: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId, 
+        ref: 'CtcCategory'
     },
     amount: {
         type: Number,

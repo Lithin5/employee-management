@@ -34,11 +34,11 @@ block content
                     label  Gender
                     .field
                         .ui.radio.checkbox
-                            input(type='radio' id="id_gendermale" name='gender' checked="#{cuser.gender}"=="male" )
+                            input(type='radio' id="id_gendermale" name='gender' value="male" checked="#{cuser.gender}"=="male" )
                             label(for="id_gendermale") Male                                                        
                     .field
                         .ui.radio.checkbox
-                            input(type='radio' id="id_genderfemale" name='gender' checked="#{cuser.gender}"=="female" )
+                            input(type='radio' id="id_genderfemale" name='gender' value="female" checked="#{cuser.gender}"=="female" )
                             label(for="id_genderfemale") Female
                 .four.wide.field
                     label  DOB
@@ -83,8 +83,7 @@ block content
                     input(type="text" name="ifsccode" placeholder="IFSC Code" value=(bankacc != null ? bankacc.ifsccode:"") required="true")
                 .four.wide.field
                     label  Location
-                    input(type="text" name="location" placeholder="Location" value=(bankacc != null ? bankacc.location:"") required="true")            
-                
+                    input(type="text" name="location" placeholder="Location" value=(bankacc != null ? bankacc.location:"") required="true")                            
             .fields 
                 .sixteen.wide.field                                                            
                     button.ui.right.floated.primary.button 
@@ -93,28 +92,47 @@ block content
     .ui.segment(id="ctcionformation")               
         h4.ui.header.horizontal.divider
             | CTC Information 
-        form.ui.form(action="/users/updateuser/#{cuser._id}" method="post" )
+        form.ui.form(action="/users/addctcdetails/#{cuser._id}" method="post" )
             .fields
                 .four.wide.field    
                     label  Category                    
                     select.ui.fluid.search.dropdown(name='ctccategoryid')                        
                         each ctccategory in ctccategorylist
-                            option(value='#{ctccategory._id}') #{ctccategory.name}
+                            option( name="ctccategoryid" value='#{ctccategory._id}') #{ctccategory.name}
                 .four.wide.field
                     label Amount
                     input(type="number" name="amount" placeholder="Amount" value="" autocomplete="false" )
                 .four.wide.field
                     button.ui.button.addbtn_space    
-                        | Add
+                        | Add        
+        - var totalamo = 0 
         table.ui.table  
             thead
                 tr  
-                    th Category
-                    th Payment
-            tbody   
+                    th Category                    
+                    th Period
+                    th Amount
+                    th Action
+            tbody                    
+                each ctcdata in ctcdatalist      
+                    - totalamo += ctcdata.amount
+                    tr  
+                        td #{ctcdata.ctccategoryid.name}                                            
+                        td #{ctcdata.ctccategoryid.payperiod}                        
+                        td #{ctcdata.amount}               
+                        td  
+                            a( class="deleteconfirm" href="/users/removectcdata/#{cuser._id}/#{ctcdata._id}")
+                                i.ui.trash.icon 
+            tfoot                        
                 tr  
-                    td Sample
-                    td 2500                        
+                    th(colspan="2")
+                        b Total                        
+                    th(colspan="2")                                                
+                        b #{totalamo}
+
+
+                                
+                                                                  
 
         .ui.message
             .header
