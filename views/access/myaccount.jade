@@ -1,0 +1,67 @@
+extends ../accesslayout
+block head
+    title My Account
+block styles
+    link(rel='stylesheet' href='/stylesheets/login.css')  
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        a.section(href="/settings") Settings                  
+        i.right.chevron.icon.divider
+        active.section My Account          
+    if success_msg && success_msg != ""             
+        .ui.success.message                
+            .header #{success_msg}        
+    .ui.segment               
+        h4.ui.header.horizontal.divider
+            | My Account
+        form.ui.form(action="/users/updatemyuser/" method="post" enctype="multipart/form-data")
+            .fields                
+                if user.profilepicture != undefined
+                    .sixteen.wide.field
+                        .centerimagemaindiv                        
+                            a(href="/profilepictures/#{user.profilepicture}" target="_blank" title="Click here to View")
+                                img.main_profile(src="/profilepictures/#{user.profilepicture}")                        
+            .fields
+                .four.wide.field
+                    label  Full Name
+                    input(type="text" name="name" placeholder="Full Name" required="true" value="#{user.name}")
+                .four.wide.field
+                    label  Email
+                    input(type="email" name="email" placeholder="Email" required="true" value="#{user.email}" )
+                .four.wide.field
+                    label  Gender
+                    .field
+                        .ui.radio.checkbox
+                            input(type='radio' id="id_gendermale" name='gender' value="male" checked="#{user.gender}"=="male" )
+                            label(for="id_gendermale") Male                                                        
+                    .field
+                        .ui.radio.checkbox
+                            input(type='radio' id="id_genderfemale" name='gender' value="female" checked="#{user.gender}"=="female" )
+                            label(for="id_genderfemale") Female
+                .four.wide.field
+                    label  DOB
+                    input(type="date" name="dob" placeholder="Date of Birth" value=(typeof user.dob === "undefined" ? "" : user.dob))
+            .fields
+                .four.wide.field
+                    label  Designation
+                    input(type="text" name="designation" placeholder="Designation", value=(typeof user.designation === "undefined" ? "" : user.designation) )
+                .four.wide.field
+                    label  Address
+                    textarea(type="text" name="address" placeholder="Address" rows="1" )
+                        | #{typeof user.address === "undefined" ? "" : user.address}
+                .four.wide.field
+                    label  Zip/Pin Code
+                    input(type="number" name="pincode" placeholder="Zip/Pin Code" value=(typeof user.pincode === "undefined" ? "" : user.pincode) )
+                .four.wide.field
+                    label Browse Profile Picture
+                    input(type="file" name="file" accept="image/*")             
+            .fields 
+                .sixteen.wide.field   
+                    a.ui.button(href="/users/updatepassword")
+                        | Update Password
+                    button.ui.right.floated.primary.button 
+                        | Save
+                    a.ui.right.floated.button(href="/users")
+                        | Cancel

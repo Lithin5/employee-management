@@ -20,4 +20,13 @@ $(document).ready(function () {
             window.location = $(this).attr('href');
         }
     });
+    $('#myaccountupdatepassword').submit(function(ev){
+        if($.trim($('#id_password').val())==""){
+            ev.preventDefault();
+            alert("Empty Password");
+        }else if($('#id_password').val() != $('#id_confirmpassword').val()){
+            ev.preventDefault();
+            alert("Passwords do not match");
+        }     
+    });
 });

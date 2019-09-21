@@ -71,7 +71,7 @@ router.post('/users/saveuser', upload.single('file'), ensureAuthenticated, (req,
   });
 }
 );
-router.get('/users/viewuser/:userId', ensureAuthenticated, async (req, res) => {  
+router.get('/users/viewuser/:userId', ensureAuthenticated, async (req, res) => {
   User.findOne({ "_id": req.params.userId }, function (err, cuser) {
     CTCCategoryList.find({}, function (err, ctccategorylist) {
       BankAccount.findOne({ "userid": req.params.userId }, (err, BnkAcc) => {
@@ -177,13 +177,64 @@ router.post('/users/addctcdetails/:userId', ensureAuthenticated, (req, res) => {
     })
     .catch(err => console.log(err));
 });
-router.get('/users/removectcdata/:userId/:ctcdataId',ensureAuthenticated,(req,res)=>{
+router.get('/users/removectcdata/:userId/:ctcdataId', ensureAuthenticated, (req, res) => {
   CtcData.deleteOne({ "_id": req.params.ctcdataId }, function (err, response) {
     req.flash(
       'success_msg',
       'User Account has been Deleted!!!'
     );
     res.redirect('/users/viewuser/' + req.params.userId + "#ctcionformation");
+  });
+});
+router.get('/users/myaccount', ensureAuthenticated, (req, res) => {
+  res.render('access/myaccount', {
+    user: req.user
+  });
+});
+router.post('/users/updatemyuser/', upload.single('file'), ensureAuthenticated, (req, res) => {
+  var updateuserobj = req.body;
+  if (typeof req.file != "undefined") {
+    updateuserobj.profilepicture = req.file.filename;
+    User.findOne({ "_id": req.user._id }, function (err, cuser) {
+      if (cuser.profilepicture != "") {
+        var dellink = 'public/profilepictures/' + cuser.profilepicture;
+        if (fs.existsSync(dellink)) {
+          fs.unlink(dellink, (err) => {
+            if (err) throw err;
+            //console.log('path/file.txt was deleted');
+          });
+        }
+      }
+    });
+  }
+  User.findByIdAndUpdate(req.user._id, updateuserobj, function (err, cuser) {
+    req.flash(
+      'success_msg',
+      'User Account has been updated'
+    );
+    res.redirect('/users/myaccount');
+  });
+});
+
+router.get('/users/updatepassword', ensureAuthenticated, (req, res) => {
+  res.render('access/updatepassword', {
+    user: req.user
+  });
+});
+
+router.post('/users/updatepassword', ensureAuthenticated, (req, res) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
+      if (err) throw err;
+      var updateuserobj = { password: hash };
+      User.findByIdAndUpdate(req.user.id, updateuserobj, function (err, cuser) {
+        req.flash(
+          'success_msg',
+          'Your Password has been updated'
+        );
+        res.redirect('/users/myaccount');
+      });
+    });
   });
 });
 module.exports = router;
