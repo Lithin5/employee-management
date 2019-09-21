@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/User');
+const CTCCategoryList = require("../models/ctccategory");
+const CtcData = require("../models/ctcdata");
+const BankAccount = require("../models/bankdetails");
+
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const bcrypt = require('bcryptjs');
 var fs = require("fs");
 var multer = require('multer');
 var cpath = require('path')
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/profilepictures')
@@ -68,9 +73,15 @@ router.post('/users/saveuser', upload.single('file'), ensureAuthenticated, (req,
 );
 router.get('/users/viewuser/:userId', ensureAuthenticated, (req, res) => {
   User.findOne({ "_id": req.params.userId }, function (err, cuser) {
-    res.render('access/viewuser', {
-      user: req.user,
-      cuser: cuser
+    CTCCategoryList.find({}, function (err, ctccategorylist) {
+      BankAccount.findOne({ "userid": req.params.userId }, (err, BnkAcc) => {
+        res.render('access/viewuser', {
+          user: req.user,
+          cuser: cuser,
+          ctccategorylist: ctccategorylist,
+          bankacc: BnkAcc
+        });
+      });
     });
   });
 });
@@ -111,7 +122,7 @@ router.get('/users/resetpassword/:userId', ensureAuthenticated, (req, res) => {
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash("Password@1", salt, (err, hash) => {
       if (err) throw err;
-      var updateuserobj = {password :hash};
+      var updateuserobj = { password: hash };
       User.findByIdAndUpdate(req.params.userId, updateuserobj, function (err, cuser) {
         req.flash(
           'success_msg',
@@ -121,6 +132,30 @@ router.get('/users/resetpassword/:userId', ensureAuthenticated, (req, res) => {
       });
     });
   });
-
+});
+router.post('/users/updateuserbank/:userId', ensureAuthenticated, (req, res) => {
+  BankAccount.findOneAndUpdate({ "userid": req.params.userId }, req.body, function (err, bankdata) {
+    if (bankdata == null) {
+      var bankaccount = new BankAccount(req.body);
+      bankaccount.userid = req.params.userId;
+      bankaccount
+        .save()
+        .then(user => {
+          req.flash(
+            'success_msg',
+            'Account Details has been updated'
+          );
+          res.redirect('/users/viewuser/' + req.params.userId);
+        })
+        .catch(err => console.log(err));
+    } else {
+      req.flash(
+        'success_msg',
+        'Account Details has been updated'
+      );
+      res.redirect('/users/viewuser/' + req.params.userId);
+    }
+    console.log(bankdata);
+  });
 });
 module.exports = router;
