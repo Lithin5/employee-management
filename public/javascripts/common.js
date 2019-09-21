@@ -13,5 +13,11 @@ $(document).ready(function () {
         if(confirm("Are sure you want to remove this account?")){
             window.location = $(this).attr('href');
         }
-    })
+    });
+    $('.deleteconfirm').click(function(ev){
+        ev.preventDefault();
+        if(confirm("Are sure you want to Delete?")){
+            window.location = $(this).attr('href');
+        }
+    });
 });

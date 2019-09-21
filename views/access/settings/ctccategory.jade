@@ -3,13 +3,75 @@ block head
     title Settings
 block styles
     link(rel='stylesheet' href='/stylesheets/login.css')  
-block content  
+block content      
     .ui.tiny.breadcrumb
         a.section(href="/dashboard") Dashboard
         i.right.chevron.icon.divider        
-        .active.section Settings
+        if typeof editctc == "undefined"
+            a.section(href="/settings") Settings
+            i.right.chevron.icon.divider
+            .active.section CTC Category
+        else
+            a.section(href="/settings") Settings
+            i.right.chevron.icon.divider
+            a.section(href="/settings/ctccategory") CTC Category
+            i.right.chevron.icon.divider
+            .active.section #{editctc.name}            
+
     .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
         - var activeitem = 'ctc'
         include includes/topmenu
-        
-        
+        if typeof editctc == "undefined"
+            form.ui.form(action="/settings/savectccategory" method="post")
+                .fields
+                    .four.wide.field
+                        label  Category
+                        input(type="text" name="name" placeholder="Enter Category" required="true")
+                    .four.wide.field
+                        label  Pay Period
+                        input(type="number" name="payperiod" placeholder="Enter Pay Period" required="true")            
+                    .four.wide.field
+                        button.ui.button.addbtn_space    
+                            | Add
+        else
+            form.ui.form(action="/settings/updatectccategory/#{editctc._id}" method="post")
+                .fields
+                    .four.wide.field
+                        label  Category
+                        input(type="text" name="name" placeholder="Enter Category" required="true" value="#{editctc.name}" )
+                    .four.wide.field
+                        label  Pay Period
+                        input(type="number" name="payperiod" placeholder="Enter Pay Period" required="true" value="#{editctc.payperiod}")            
+                    .six.wide.field
+                        a.ui.button.addbtn_space(href="/settings/ctccategory")
+                            | Cancel
+                        button.ui.button.addbtn_space    
+                            | Update
+                        a.ui.button.addbtn_space.red.deleteconfirm(href="/settings/deletectccategory/#{editctc._id}")    
+                            | Delete
+        .ui.message
+            .header
+                | Information
+            p
+                | Pay Period is the frequency of payment
+            p
+                | eg: Basic Pay is paid monthly so freequency is 1, If Variable pay is paid annually then frequency is 12
+        if typeof ctccategorylist != "undefined"
+            table.ui.table  
+                thead   
+                    tr  
+                        th Category Name
+                        th Pay Frequency
+                        th Action                        
+                tbody
+                    each ctccategory in ctccategorylist
+                        tr
+                            td #{ctccategory.name}
+                            td Every #{ctccategory.payperiod} #{ctccategory.payperiod== 1?"Month":"Months"}
+                            td 
+                                a(href="/settings/updatectccategory/#{ctccategory._id}")
+                                    i.ui.edit.icon Edit/Update
+
