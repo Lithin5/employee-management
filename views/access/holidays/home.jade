@@ -1,0 +1,28 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "holidays" 
+block head
+    title Holidays
+block styles
+    link(rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.css')
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Holidays
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Holidays
+        #calendar
+block scripts
+    script(src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/moment.min.js')
+    script(src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/jquery.min.js')
+    script(src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/jquery-ui.min.js')
+    script(src='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.js')
+    script(type='text/javascript', src='/javascripts/holidays.js')
+    
+
+        
