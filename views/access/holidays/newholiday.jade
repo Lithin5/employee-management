@@ -1,0 +1,46 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "holidays" 
+block head
+    title New Holiday
+block styles
+    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider        
+        a.section(href="/holidays") Holidays
+        i.right.chevron.icon.divider
+        .active.section New Holiday
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | New Holiday
+        form.ui.form(action="/holidays/new" method="post")
+            .fields
+                .four.wide.field
+                    label  Date
+                    input(type="date" id="date" name="date" value="#{moment(Date.now()).format('YYYY-MM-DD')}" required="true")
+                .four.wide.field
+                    label  Message
+                    input(type="text" name="message" placeholder="Enter Message" required="true" )
+                .four.wide.field
+                    button.ui.primary.button.addbtn_space 
+                        | Add
+        table.ui.table  
+            thead   
+                th Date
+                th Message
+                th Action
+            tobody
+                each holiday in holidayslist
+                    tr
+                        td #{moment(holiday.date).format('DD/MM/YYYY')}
+                        td #{holiday.message}
+                        td 
+                            a.deleteconfirm(href="/holidays/remove/#{holiday._id}") 
+                                i.trash.icon &nbsp;Remove
+
+block scripts
