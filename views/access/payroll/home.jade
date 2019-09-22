@@ -1,0 +1,36 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "payroll" 
+block head
+    title Payroll
+block styles    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Payroll
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Payroll 
+        form.ui.form( id="submitpayrollform" action="/payroll/" method="get")       
+            .fields
+                .three.wide.field
+                    label  Year
+                    input( type="number" id="idyear" min="2017" max="2050" value="#{year}" name="year" required="true" )
+                .three.wide.field
+                    label  Month
+                    input( type="number" id="idmonth" min="1" max="12" value="#{month}" name="month" required="true" )
+                button.button.ui.addbtn_space Submit
+        table.ui.table 
+            thead   
+                th Name
+                th Complaint
+                th Date
+                th Status
+                th Remarks
+                th Action
+            tbody   
+                #{userlist}

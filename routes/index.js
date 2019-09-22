@@ -75,7 +75,7 @@ router.get('/users/viewuser/:userId', ensureAuthenticated, async (req, res) => {
   User.findOne({ "_id": req.params.userId }, function (err, cuser) {
     CTCCategoryList.find({}, function (err, ctccategorylist) {
       BankAccount.findOne({ "userid": req.params.userId }, (err, BnkAcc) => {
-        CtcData.find()
+        CtcData.find({'userid':req.params.userId})
           .populate('ctccategoryid')
           .then(ctcdata => {
             res.render('access/viewuser', {

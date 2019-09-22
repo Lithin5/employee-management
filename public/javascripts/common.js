@@ -44,4 +44,8 @@ $(document).ready(function () {
             window.location = $(this).attr('href');
         }
     });
+    $('#submitpayrollform').submit(function (ev) {
+        ev.preventDefault();
+        window.location = $(this).attr('action') + $('#idyear').val() + "/" + $('#idmonth').val();
+    });
 });
