@@ -14,7 +14,7 @@ var usersRouter = require('./routes/users');
 var settigsRouter = require("./routes/settings");
 var leaveRouter = require("./routes/leave");
 var holidaysRouter = require("./routes/holidays");
-
+var complaintsRouter = require("./routes/complaints");
 
 var app = express();
 app.locals.moment = require('moment');
@@ -69,8 +69,10 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/settings', settigsRouter);
-app.use('/leave',leaveRouter);
-app.use('/holidays',holidaysRouter);
+app.use('/leave', leaveRouter);
+app.use('/holidays', holidaysRouter);
+app.use("/complaints", complaintsRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

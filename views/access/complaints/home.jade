@@ -1,0 +1,44 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "complaints" 
+block head
+    title Complaints
+block styles    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Complaints
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Complaints
+        a.ui.button(href="/complaints/new") Add New Complaint
+        table.ui.table 
+            thead   
+                th Name
+                th Complaint
+                th Date
+                th Status
+                th Remarks
+                th Action
+            tbody
+                each complaint in complaintlist
+                    tr
+                        td #{complaint.userdetails.name}
+                        td #{complaint.message}
+                        td #{moment(complaint.date).format('DD/MM/YYYY')}
+                        td #{complaint.status}
+                        td #{complaint.remarks}
+                        td
+                            a(href="/complaints/view/#{complaint._id}") 
+                                i.file.outline.icon&nbsp;View
+
+                
+        
+
+    
+
+        

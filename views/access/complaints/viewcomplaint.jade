@@ -1,0 +1,42 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "View Complaint" 
+block head
+    title View Complaint
+block styles    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        a.section(href="/complaints") Complaints
+        i.right.chevron.icon.divider
+        .active.section View Complaint
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | New Complaint
+        
+        .ui.message
+            .header
+                | Name: #{complaint.userdetails.name}
+            br
+            .header
+                | Message: #{complaint.message}
+            br
+            .header
+                | Date: #{moment(complaint.date).format('DD/MM/YYYY')}            
+        
+        form.ui.form(action="/complaints/updatereview/#{complaint._id}" method="post")
+            .fields
+                .four.wide.field
+                    label  Review
+                    input( type="text" name="remarks")
+                .four.wide.field
+                    button.ui.button.addbtn_space Submit
+        
+        a.ui.button.red.deleteconfirm(href="/complaints/deletecomplaint/#{complaint._id}") Delete
+    
+
+        

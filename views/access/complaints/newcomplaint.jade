@@ -1,0 +1,31 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "Add Complaint" 
+block head
+    title New Complaint 
+block styles    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        a.section(href="/complaints") Complaints
+        i.right.chevron.icon.divider
+        .active.section Add Complaint
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | New Complaint
+        form.ui.form(action="/complaints/new" method="post")
+            .fields
+                .four.wide.field
+                    label  Message
+                    textarea(name="message")
+                .four.wide.field
+                    button.ui.button.addbtn_space Submit
+        
+
+    
+
+        
