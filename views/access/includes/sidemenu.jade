@@ -6,33 +6,33 @@
       img.sidemenu-profileimg(src="/images/sample-profile.png")
     h3.sidebar-profile-heading  
       | #{user.name}
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/dashboard" class=(actsidmenu == "dashboard"?"active":"" ))
     i.expand.icon.dash-icons
     |  Dashboard
-  a.item.echo(href="/users" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "users"?"active":"" ))
     i.user.outline.icon.dash-icons
     |  Users
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
     i.clock.icon.dash-icons
     |  Work Schedule
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
     i.calendar.check.icon.dash-icons
     |  Attendance
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
     i.credit.card.outline.icon.dash-icons
     |  Payrol
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/leave" class=(actsidmenu == "leave"?"active":"" ))
     i.hourglass.icon.dash-icons
     |  Leaves
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
     i.calendar.alternate.icon.dash-icons
     |  Holidays
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
     i.book.icon.dash-icons
     |  Complaints
-  a.item.echo(href="/dashboard" class="myd-active")
+  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
     i.chart.bar.outline.icon.dash-icons
     |  Reports
-  a.item.echo(href="/settings" class="myd-active")
+  a.item.echo.myd-active(href="/settings" class=(actsidmenu == "settings"?"active":"" ))
     i.cog.icon.dash-icons
     |  Settings

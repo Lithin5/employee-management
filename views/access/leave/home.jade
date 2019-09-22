@@ -1,0 +1,61 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "leave" 
+block head
+    title Leave Request
+block styles
+    link(rel='stylesheet' href='/stylesheets/login.css')  
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Leaves
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Leaves 
+        .fields 
+            .sixteen.wide.field                    
+                a.ui.primary.button(href="/leave/newleaverequest")
+                    | New Leave Request 
+
+        table.ui.table  
+            thead   
+                th Name
+                th Request Date
+                th Leave From
+                th To
+                th Type
+                th Message
+                th Status
+                th Action
+            tbody                
+                each leave in leavelist
+                    tr
+                        td 
+                            a(href="/users/viewuser/#{leave.userdetails._id}") #{leave.userdetails.name}                        
+                        td #{moment(leave.requestdate).format('DD/MM/YYYY')}
+                        td #{moment(leave.leavefrom).format('DD/MM/YYYY')}
+                        td #{moment(leave.leaveto).format('DD/MM/YYYY')}                        
+                        td #{leave.leavetype}
+                        td #{leave.message}
+                        td                             
+                            if leave.status == "Requested"                              
+                                .ui.buttons
+                                    a.ui.button.confirmaction( href="/leave/updatestatus/#{leave._id}/Rejected") Reject
+                                    .or
+                                    a.ui.button.positive.confirmaction( href="/leave/updatestatus/#{leave._id}/Approved") Approve
+                            else if leave.status == "Approved"                              
+                                h5.colorgreen
+                                    i.check.icon Approved
+                            else if leave.status == "Rejected"                              
+                                h5.colorred
+                                    i.close.icon &nbsp;Rejected
+                        td 
+                            a.ui.deleteconfirm( href="/leave/deleteleavereq/#{leave._id}")
+                                i.trash.icon &nbsp;Delete 
+
+
+

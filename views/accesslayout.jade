@@ -7,7 +7,9 @@ html
     link(rel='stylesheet' href='/dist/semantic-ui/semantic.min.css')
     link(rel='stylesheet' href='/stylesheets/common.css')
     block styles           
-  body            
+  body        
+    block nav 
+      - var actsidmenu = ""   
     include access/includes/sidemenu            
     .pusher        
       include access/includes/topmenu

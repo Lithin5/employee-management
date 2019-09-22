@@ -1,0 +1,41 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "leave" 
+block head
+    title Leave Request
+block styles
+    link(rel='stylesheet' href='/stylesheets/login.css')  
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Leaves
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | New Leave Request 
+        form.ui.form(action="/leave/newleaverequest" method="post")
+            .fields
+                .four.wide.field
+                    label  From
+                    input(type="date" id="leavefrom" name="leavefrom" value="#{moment(Date.now()).format('YYYY-MM-DD')}" required="true")
+                .four.wide.field
+                    label  To
+                    input(type="date" id="leaveto" min="#{moment(Date.now()).format('YYYY-MM-DD')}" name="leaveto" value="#{moment(Date.now()).format('YYYY-MM-DD')}" required="true")
+                .four.wide.field
+                    label Leave Type
+                        select.ui.dropdown(name="leavetype")
+                            option(value="Casual Leave") Casual Leave
+                            option(value="Sick Leave") Sick Leave
+                .four.wide.field
+                    label Message
+                    input(type="text" name="message" placeholder="Enter your Message Here")
+            .fields 
+                .sixteen.wide.field                    
+                    button.ui.right.floated.primary.button 
+                        | Save
+                    a.ui.right.floated.button(href="/leave")
+                        | Cancel
+

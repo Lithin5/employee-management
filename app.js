@@ -12,8 +12,9 @@ const session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var settigsRouter = require("./routes/settings");
+var leaveRouter = require("./routes/leave");
 var app = express();
-
+app.locals.moment = require('moment');
 // Passport Config
 require('./config/passport')(passport);
 
@@ -65,6 +66,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/settings', settigsRouter);
+app.use('/leave',leaveRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
