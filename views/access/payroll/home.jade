@@ -26,11 +26,40 @@ block content
                 button.button.ui.addbtn_space Submit
         table.ui.table 
             thead   
-                th Name
-                th Complaint
+                th Name                
                 th Date
+                th Amount
                 th Status
-                th Remarks
                 th Action
             tbody   
-                #{userlist}
+                each payrolluser in userlist
+                    tr
+                        td #{payrolluser.user.name}   
+                        td 
+                            if payrolluser.payroll == null 
+                                i Not Updated Yet
+                            else
+                                | dhf
+                        td
+                            - var totoalamount = 0
+                            each ctcdata in payrolluser.ctcdata
+                                - totoalamount += ctcdata.amount
+                            if totoalamount == 0
+                                | CTC data has not updated yet
+                                a(href="/users/viewuser/#{payrolluser.user._id}/#ctcionformation") Update Here            
+                            else
+                                |#{totoalamount}
+                        td 
+                            if payrolluser.payroll == null 
+                                | Not Send
+                            else
+                                | Marked as sent
+                        td
+                            if payrolluser.payroll == null 
+                                if totoalamount == 0
+                                    | NA                                    
+                                else
+                                    a(href="/payroll/markassent/#{payrolluser.user._id}/#{year}/#{month}") Mark as sent
+                            else
+                                a(href="/payroll/remove/#{payrolluser.payroll._id}") Remove
+                                
