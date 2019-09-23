@@ -16,6 +16,7 @@ var leaveRouter = require("./routes/leave");
 var holidaysRouter = require("./routes/holidays");
 var complaintsRouter = require("./routes/complaints");
 var payrollRouter = require("./routes/payroll");
+var workscheduleRouter = require("./routes/workschedule");
 
 var app = express();
 app.locals.moment = require('moment');
@@ -74,6 +75,7 @@ app.use('/leave', leaveRouter);
 app.use('/holidays', holidaysRouter);
 app.use("/complaints", complaintsRouter);
 app.use('/payroll',payrollRouter);
+app.use('/workschedule',workscheduleRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

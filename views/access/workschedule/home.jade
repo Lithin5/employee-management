@@ -1,0 +1,17 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "workschedule" 
+block head
+    title Work Schedule
+block styles    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Work Schedule
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Work Schedule 
