@@ -14,39 +14,40 @@ block content
             .ui.success.message                
                 .header #{success_msg}
         h4.ui.header.horizontal.divider
-            | Work Schedule
+            | Work Schedule                
         .ui.grid
+            .sixteen.wide.column
+                a.ui.button(href="/workschedule/new") Add Work Schedule
             .three.wide.column
                 div(id="sidedate-container")
-                    div.class-insidedate.clicked
-                        |02/05/2019
-                    div.class-insidedate
-                        |02/05/2019
-                    div.class-insidedate
-                        |02/05/2019
-                    div.class-insidedate
-                        |02/05/2019
-                    div.class-insidedate
-                        |02/05/2019
-                    div.class-insidedate
-                        |02/05/2019
+                    each cdate in datelist
+                        a(href="/workschedule/index/#{moment(cdate).format('YYYY-MM-DD')}")
+                            div.class-insidedate( class=(moment(cdate).format('YYYY-MM-DD') == activedate ? "clicked" :""))    
+                                | #{moment(cdate).format('DD/MM/YYYY')}
             .thirteen.wide.column
                 div(id="mainworkschedulecontainer")
-                    .class-eachprofile
-                        h3.ce-title Sample Title
-                        p.ce-description
-                            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero neque, quas adipisci harum nobis possimus veritatis est veniam debitis delectus ipsum pariatur magni voluptas incidunt laudantium voluptatem itaque inventore. Vero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero neque, quas adipisci harum nobis possimus veritatis est veniam debitis delectus ipsum pariatur magni voluptas incidunt laudantium voluptatem itaque inventore. Vero.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero neque, quas adipisci harum nobis possimus veritatis est veniam debitis delectus ipsum pariatur magni voluptas incidunt laudantium voluptatem itaque inventore. Vero.
-                        .ce-bottom-de                            
-                            .ui.grid
-                                .seven.wide.column
-                                    .ce-addedto                      
-                                        | Assigned To
-                                        b 
-                                            |Lithin Kuriachan
-                                .seven.wide.column                      
-                                    .ce-status                      
-                                        | Status
-                                        b 
-                                            | Assigned
-                                .two.wide.column                      
-                                    a.ce-action.deleteconfirm(href="") Remove
+                    each work in workschedulelist                            
+                        .class-eachprofile
+                            h3.ce-title #{work.title}
+                            p.ce-description
+                                | #{work.description}
+                            .ce-bottom-de                            
+                                .ui.grid
+                                    .seven.wide.column
+                                        .ce-addedto                      
+                                            | Assigned To
+                                            b 
+                                                | : #{work.userdetails.name}
+                                    .seven.wide.column                      
+                                        .ce-status                      
+                                            | Status
+                                            b 
+                                                | : #{work.status}                                                                                                                                    
+                                            if work.status == "Assigned"
+                                                a(href="/workschedule/changestatus/#{work._id}/#{activedate}/progressing" style="float:right;" ) Mark as Progressing
+                                            if work.status == "Progressing"
+                                                a(href="/workschedule/changestatus/#{work._id}/#{activedate}/completed" style="float:right;" ) Mark as Completed
+                                            if work.status == "Completed"
+                                                a(href="/workschedule/changestatus/#{work._id}/#{activedate}/verified" style="float:right;" ) Mark as Verified
+                                    .two.wide.column                      
+                                        a.ce-action.deleteconfirm(href="/workschedule/deleteschedule/#{work._id}") Remove

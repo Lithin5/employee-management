@@ -1,0 +1,41 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "workschedule" 
+block head
+    title New Work Schedule    
+block styles    
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        a.section(href="/workschedule/index") Work Schedule
+        i.right.chevron.icon.divider
+        .active.section New Work Schedule    
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | New Work Schedule    
+        form.ui.form(action="/workschedule/new" method="post")
+            .fields
+                .four.wide.field
+                .eight.wide.field
+                    label Employee
+                    select(name="userdetails")
+                        each user in userlist
+                            option(value="#{user._id}") #{user.name}
+            .fields
+                .four.wide.field
+                .eight.wide.field
+                    label Title
+                    input(type="text" name="title" placeholder="Enter Title")
+            .fields
+                .four.wide.field
+                .eight.wide.field
+                    label Description
+                    textarea(name="description" placeholder="Enter Title")
+            .fields
+                .four.wide.field
+                .eight.wide.field
+                    button.ui.right.floated.button(type="submit") Submit                

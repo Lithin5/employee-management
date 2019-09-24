@@ -71,13 +71,13 @@ body {
     font-weight: 600;
     color: #444444;
     cursor: pointer;
-    box-shadow: 0px 0px 3px 1px #696969 inset;
+    box-shadow: 1px 1px 3px 1px #949494;    
   }
   .class-insidedate:hover{     
     box-shadow:0px 0px;
   }
   .class-insidedate.clicked{
-    box-shadow: 1px 1px 2px 1px #949494;
+    box-shadow: 0px 0px 3px 1px #696969 inset;    
   }
   #mainworkschedulecontainer{
 
@@ -103,7 +103,7 @@ body {
     margin-top: 5px;    
   }
   .ce-addedto{
-    background-color: #dedede;
+    background-color: #f5f5f5;
     padding: 1px;
     padding-left: 5px;
     color: #474747;
@@ -111,9 +111,10 @@ body {
     padding-bottom: 5px;
   }
   .ce-status{
-    background-color: #dedede;
+    background-color: #f5f5f5;
     padding: 1px;
     padding-left: 5px;
+    padding-right: 5px;
     color: #474747;
     font-size: 16px;
     padding-bottom: 5px;
