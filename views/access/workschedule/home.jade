@@ -14,4 +14,39 @@ block content
             .ui.success.message                
                 .header #{success_msg}
         h4.ui.header.horizontal.divider
-            | Work Schedule 
+            | Work Schedule
+        .ui.grid
+            .three.wide.column
+                div(id="sidedate-container")
+                    div.class-insidedate.clicked
+                        |02/05/2019
+                    div.class-insidedate
+                        |02/05/2019
+                    div.class-insidedate
+                        |02/05/2019
+                    div.class-insidedate
+                        |02/05/2019
+                    div.class-insidedate
+                        |02/05/2019
+                    div.class-insidedate
+                        |02/05/2019
+            .thirteen.wide.column
+                div(id="mainworkschedulecontainer")
+                    .class-eachprofile
+                        h3.ce-title Sample Title
+                        p.ce-description
+                            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero neque, quas adipisci harum nobis possimus veritatis est veniam debitis delectus ipsum pariatur magni voluptas incidunt laudantium voluptatem itaque inventore. Vero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero neque, quas adipisci harum nobis possimus veritatis est veniam debitis delectus ipsum pariatur magni voluptas incidunt laudantium voluptatem itaque inventore. Vero.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero neque, quas adipisci harum nobis possimus veritatis est veniam debitis delectus ipsum pariatur magni voluptas incidunt laudantium voluptatem itaque inventore. Vero.
+                        .ce-bottom-de                            
+                            .ui.grid
+                                .seven.wide.column
+                                    .ce-addedto                      
+                                        | Assigned To
+                                        b 
+                                            |Lithin Kuriachan
+                                .seven.wide.column                      
+                                    .ce-status                      
+                                        | Status
+                                        b 
+                                            | Assigned
+                                .two.wide.column                      
+                                    a.ce-action.deleteconfirm(href="") Remove
