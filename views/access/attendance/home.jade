@@ -1,0 +1,19 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "attendance" 
+block head
+    title Attendance
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Attendance
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Attendance
+    
+
+        
