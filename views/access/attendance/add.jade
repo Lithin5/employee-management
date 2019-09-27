@@ -1,0 +1,35 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "attendance" 
+block head
+    title Add Attendance    
+    block styles      
+        link(rel='stylesheet' href='/stylesheets/attendance.css')
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        a.section(href="/attendance") Attendance
+        i.right.chevron.icon.divider
+        .active.section Add Attendance
+    .ui.segment
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Add Attendance
+        .ui.grid.container
+            .four.wide.column
+            .eight.wide.column
+                #picturecontainer
+                    img.sampledectimg(id="sampleimageone")
+                    img.sampledectimg(id="sampleimagetwo")
+                    img.sampledectimg(id="sampleimagethree")
+                hr
+                canvas(id="picturecanvas")
+                #videocontainer
+                    video(id="idvideoelement" autoplay='' muted='')
+block scripts
+    script(src="/dist/api/face-api.min.js")
+    script(src="/javascripts/attendance.js")
+    

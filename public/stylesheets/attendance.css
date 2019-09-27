@@ -1,0 +1,29 @@
+#idvideoelement{
+    width: 100%;
+    height: auto;
+    background-image:black;
+    border: 5px solid black;
+}
+#videocontainer{
+    position: relative;
+}
+canvas{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: auto;
+}
+#picturecanvas{
+    display: none;
+}
+#picturecontainer{
+    text-align: center;
+}
+.sampledectimg{
+    width: 150px;
+    height: 150px;
+    margin-left: 5px;
+    object-fit: cover;
+    background-color: #b0b0b0;
+}

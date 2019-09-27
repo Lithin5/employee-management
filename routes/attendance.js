@@ -8,4 +8,9 @@ router.get('/', ensureAuthenticated, (req, res) => {
     });
 });
 
+router.get('/add', ensureAuthenticated, (req, res) => {
+    res.render('access/attendance/add', {
+        user: req.user
+    });
+});
 module.exports = router;
