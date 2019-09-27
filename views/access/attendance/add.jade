@@ -20,33 +20,45 @@ block content
             | Add Attendance
         img(src="/profilepictures/#{user.profilepicture}" id="profilepicturehidden" )
         .ui.grid.container        
-            .eight.wide.column                
-                .ui.icon.message(id="idmessage_box")
-                    i.notched.circle.loading.icon
-                    .content
-                        .header Wait  
-                .ui.positive.message(id="successmessage")                    
-                    .header
-                        | Face Recognized
-                    p
-                        | Your Attendance has been marked
-                .ui.negative.message(id="errormessage")                    
-                    .header
-                        | Face Not Recognized!!!
-                    p
-                        | Your Face is not recognized, Try Again
+            .eight.wide.column
+                if attdata.length > 0                
+                    .ui.positive.message()                    
+                        .header
+                            | Face Recognized
+                        p
+                            | Your Attendance has been marked
+                else
+                    .ui.icon.message(id="idmessage_box")
+                        i.notched.circle.loading.icon
+                        .content
+                            .header Wait  
+                    .ui.positive.message(id="successmessage")                    
+                        .header
+                            | Face Recognized
+                        p
+                            | Your Attendance has been marked
+                    .ui.negative.message(id="errormessage")                    
+                        .header
+                            | Face Not Recognized!!!
+                        p
+                            | Your Face is not recognized, Try Again
 
-                #wholeitemcontainer                    
-                    canvas(id="picturecanvas")
-                    #videocontainer
-                        video(id="idvideoelement" autoplay='' muted='')                    
-                button.ui.button(id="startcapture") Start                                    
+                    #wholeitemcontainer                    
+                        canvas(id="picturecanvas")
+                        #videocontainer
+                            video(id="idvideoelement" autoplay='' muted='')                    
+                    button.ui.button(id="startcapture") Start                                    
             .eight.wide.column                 
                 #picturecontainer
                         img.sampledectimg(id="sampleimageone")
                         img.sampledectimg(id="sampleimagetwo")
-                        img.sampledectimg(id="sampleimagethree")                    
-                
+                        img.sampledectimg(id="sampleimagethree")   
+
+    form(id="hiddenformsubmit" action="/attendance/add" method="POST" )    
+        input(type="text" name="status" id="id_status" value="")
+        input(type="text" name="expression" id="id_expression" value="")
+        button(id="idsubmit")
+
 block scripts
     script(src="/dist/api/face-api.min.js")
     script(src="/javascripts/attendance.js")

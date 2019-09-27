@@ -146,12 +146,13 @@ async function matchimage() {
         $('#startcapture').html("Try Again!!!");
         $('#errormessage').fadeIn();
     } else { //Matched
-        console.log(findexpression(expressiondetections));
-        $('#successmessage').fadeIn();
+        // console.log(findexpression(expressiondetections));
+        $("#id_status").val("present");
+        $("#id_expression").val(findexpression(expressiondetections));
+        $('#idsubmit').trigger('click');
+        $('#successmessage').fadeIn();        
     }
-
     // Ajax Call to add Expressions
-    
     $('#idmessage_box').find('.header').html("Cool, Wait for a while :)");
     $('#picturecontainer').fadeOut(0);
     setTimeout(() => {
