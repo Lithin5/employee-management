@@ -48,4 +48,7 @@ $(document).ready(function () {
         ev.preventDefault();
         window.location = $(this).attr('action') + $('#idyear').val() + "/" + $('#idmonth').val();
     });
+    $('.menusampleitem').mouseenter(function(){
+        $(this).transition('tada');
+    });    
 });
