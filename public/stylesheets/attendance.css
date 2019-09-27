@@ -21,6 +21,7 @@ canvas{
     display: none;
 }
 #picturecontainer{
+    display: none;
     text-align: center;
 }
 .sampledectimg{

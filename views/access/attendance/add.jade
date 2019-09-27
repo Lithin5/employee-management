@@ -25,6 +25,17 @@ block content
                     i.notched.circle.loading.icon
                     .content
                         .header Wait  
+                .ui.positive.message(id="successmessage")                    
+                    .header
+                        | Face Recognized
+                    p
+                        | Your Attendance has been marked
+                .ui.negative.message(id="errormessage")                    
+                    .header
+                        | Face Not Recognized!!!
+                    p
+                        | Your Face is not recognized, Try Again
+
                 #wholeitemcontainer                    
                     canvas(id="picturecanvas")
                     #videocontainer
@@ -34,8 +45,7 @@ block content
                 #picturecontainer
                         img.sampledectimg(id="sampleimageone")
                         img.sampledectimg(id="sampleimagetwo")
-                        img.sampledectimg(id="sampleimagethree")
-                    #distance result
+                        img.sampledectimg(id="sampleimagethree")                    
                 
 block scripts
     script(src="/dist/api/face-api.min.js")
