@@ -18,17 +18,25 @@ block content
                 .header #{success_msg}
         h4.ui.header.horizontal.divider
             | Add Attendance
-        .ui.grid.container
-            .four.wide.column
-            .eight.wide.column
+        img(src="/profilepictures/#{user.profilepicture}" id="profilepicturehidden" )
+        .ui.grid.container        
+            .eight.wide.column                
+                .ui.icon.message(id="idmessage_box")
+                    i.notched.circle.loading.icon
+                    .content
+                        .header Wait  
+                #wholeitemcontainer                    
+                    canvas(id="picturecanvas")
+                    #videocontainer
+                        video(id="idvideoelement" autoplay='' muted='')                    
+                button.ui.button(id="startcapture") Start                                    
+            .eight.wide.column                 
                 #picturecontainer
-                    img.sampledectimg(id="sampleimageone")
-                    img.sampledectimg(id="sampleimagetwo")
-                    img.sampledectimg(id="sampleimagethree")
-                hr
-                canvas(id="picturecanvas")
-                #videocontainer
-                    video(id="idvideoelement" autoplay='' muted='')
+                        img.sampledectimg(id="sampleimageone")
+                        img.sampledectimg(id="sampleimagetwo")
+                        img.sampledectimg(id="sampleimagethree")
+                    #distance result
+                
 block scripts
     script(src="/dist/api/face-api.min.js")
     script(src="/javascripts/attendance.js")
