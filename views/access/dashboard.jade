@@ -8,10 +8,11 @@ block styles
 block content      
   .ui.segment  
     .ui.grid.menuparent
-      .four.wide.column        
-        a.menusampleitem.item-color-one(href="/users")
-          i.user.outline.icon
-          p Users
+      if user.power == 1  
+        .four.wide.column        
+          a.menusampleitem.item-color-one(href="/users")
+            i.user.outline.icon
+            p Users
       .four.wide.column        
         a.menusampleitem.item-color-two(href="/workschedule/index")
           i.calendar.alternate.icon
@@ -36,11 +37,13 @@ block content
         a.menusampleitem.item-color-seven(href="/complaints")
           i.question.circle.outline.icon
           p Complaints
-      .four.wide.column        
-        a.menusampleitem.item-color-eight(href="/reports")
-          i.chart.line.icon
-          p Reports
-      .four.wide.column        
-        a.menusampleitem.item-color-nine(href="/settings")
-          i.cog.icon
-          p Settings
+      if user.power == 1  
+        .four.wide.column        
+          a.menusampleitem.item-color-eight(href="/reports")
+            i.chart.line.icon
+            p Reports    
+      if user.power == 1  
+        .four.wide.column        
+          a.menusampleitem.item-color-nine(href="/settings")
+            i.cog.icon
+            p Settings
