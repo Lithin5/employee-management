@@ -19,8 +19,9 @@ var payrollRouter = require("./routes/payroll");
 var workscheduleRouter = require("./routes/workschedule");
 var attendanceRouter = require("./routes/attendance");
 var reportsRouter = require("./routes/reports");
-
 var app = express();
+const server = async () => {
+
 app.locals.moment = require('moment');
 // Passport Config
 require('./config/passport')(passport);
@@ -29,13 +30,16 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose
+await mongoose
   .connect(
-    db,
-    { useNewUrlParser: true }
+    db
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
+
+
+
+}
 
 
 // view engine setup
@@ -96,5 +100,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 module.exports = app;
+
+server();
+
+
+
+
