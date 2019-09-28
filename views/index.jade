@@ -8,6 +8,9 @@ block content
   #image_overlay
   .ui.middle.aligned.center.aligned.grid
     .column                        
+      if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
       #login-container          
         h2(class="login-titile")
           | Login

@@ -24,6 +24,25 @@ var upload = multer({ storage: storage })
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('index', { message: req.flash('error') }));
 
+router.get('/seed',(req, res) =>{
+  var seeddata = {
+    name:"Lithin Kuriachan",
+    email:"lithin@gmail.com",
+    password:"$2a$10$1M..UMg7r9F.zkm32O8HReCJZ4/JFMSow0dwJ/EWr5Zjy0Y4mQEsq",
+    power:1
+  };
+  var SeedUser = new User(seeddata);
+  SeedUser
+    .save()
+    .then(saveddata =>{
+      req.flash(
+        'success_msg',
+        'seed has been update, new password:lithin'
+      );
+      res.redirect('/');
+    });
+});
+
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
   res.render('access/dashboard', {
