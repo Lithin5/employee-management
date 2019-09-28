@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../models/User');
+const User = require('../models/user_model');
 const CTCCategoryList = require("../models/ctccategory");
 const CtcData = require("../models/ctcdata");
 const BankAccount = require("../models/bankdetails");

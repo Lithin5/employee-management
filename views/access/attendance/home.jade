@@ -22,6 +22,7 @@ block content
                 th User Name
                 th Status
                 th Expression 
+                th Action
             tbody
                 if attendata.length > 0
                     each attend in attendata
@@ -30,6 +31,8 @@ block content
                             td #{attend.userdata.name}
                             td #{attend.status}
                             td #{attend.expression}
+                            td
+                                a(href="/attendance/delete/#{attend._id}") Delete
                 else 
                     tr
                         td(colspan="4") No Record has been found

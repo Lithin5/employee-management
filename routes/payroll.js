@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const users = require("../models/User");
+const users = require("../models/user_model");
 const Payroll = require("../models/payroll");
 const Ctcdata = require("../models/ctcdata");
 

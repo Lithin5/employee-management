@@ -37,4 +37,13 @@ router.post('/add', ensureAuthenticated, (req, res) => {
         });
 });
 
+router.get('/delete/:attendanceId', ensureAuthenticated, (req, res) => {
+    AttendanceData.findByIdAndDelete(req.params.attendanceId, (err, attendanceddata) => {
+        req.flash(
+            'success_msg',
+            'Record has been deleted!!!'
+        );
+        res.redirect('/attendance');
+    });
+});
 module.exports = router;
