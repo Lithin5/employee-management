@@ -14,6 +14,24 @@ block content
                 .header #{success_msg}
         h4.ui.header.horizontal.divider
             | Attendance
-    
+        a.ui.button(href="/attendance/add") Add Attendance
+        hr
+        table.ui.table  
+            thead
+                th Date
+                th User Name
+                th Status
+                th Expression 
+            tbody
+                if attendata.length > 0
+                    each attend in attendata
+                        tr                        
+                            td #{moment(attend.date).format('DD/MM/YYYY')} 
+                            td #{attend.userdata.name}
+                            td #{attend.status}
+                            td #{attend.expression}
+                else 
+                    tr
+                        td(colspan="4") No Record has been found
 
         

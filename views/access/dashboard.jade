@@ -1,28 +1,49 @@
 extends ../accesslayout
 block nav 
-    - var actsidmenu = "dashboard" 
+  - var actsidmenu = "dashboard" 
 block head
   title Dashboard
 block styles
-  link(rel='stylesheet' href='/stylesheets/login.css')  
-block content        
-      h1.ui.header Semantic UI Fixed Template
-      p This is a basic fixed menu template using fixed size containers.
-      p
-        | A text container is used for the main container, which is useful for single column layouts
-      p
-        | A text container is used for the main container, which is useful for single column layouts
-        
-        | A text container is used for the main container, which is useful for single column layouts
-      p
-        | A text container is used for the main container, which is useful for single column layouts
-        | A text container is used for the main container, which is useful for single column layouts
-      p
-        | A text container is used for the main container, which is useful for single column layouts
-        | A text container is used for the main container, which is useful for single column layouts
-      p
-        | A text container is used for the main container, which is useful for single column layouts
-        | A text container is used for the main container, which is useful for single column layouts
-      p
-        | A text container is used for the main container, which is useful for single column layouts
-      
+  link(rel='stylesheet' href='/stylesheets/dashboard.css')  
+block content      
+  .ui.segment  
+    .ui.grid.menuparent
+      if user.power == 1  
+        .four.wide.column        
+          a.menusampleitem.item-color-one(href="/users")
+            i.user.outline.icon
+            p Users
+      .four.wide.column        
+        a.menusampleitem.item-color-two(href="/workschedule/index")
+          i.calendar.alternate.icon
+          p Work Schedule
+      .four.wide.column        
+        a.menusampleitem.item-color-three(href="/attendance")
+          i.calendar.check.icon
+          p Attendance            
+      .four.wide.column        
+        a.menusampleitem.item-color-four(href="/payroll/index")
+          i.crosshairs.icon
+          p Payroll                   
+      .four.wide.column        
+        a.menusampleitem.item-color-five(href="/leave")
+          i.envelope.outline.icon
+          p Leave         
+      .four.wide.column        
+        a.menusampleitem.item-color-six(href="/holidays")
+          i.calendar.alternate.outline.icon
+          p Holidays
+      .four.wide.column        
+        a.menusampleitem.item-color-seven(href="/complaints")
+          i.question.circle.outline.icon
+          p Complaints
+      if user.power == 1  
+        .four.wide.column        
+          a.menusampleitem.item-color-eight(href="/reports")
+            i.chart.line.icon
+            p Reports    
+      if user.power == 1  
+        .four.wide.column        
+          a.menusampleitem.item-color-nine(href="/settings")
+            i.cog.icon
+            p Settings

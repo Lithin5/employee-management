@@ -18,6 +18,7 @@ var complaintsRouter = require("./routes/complaints");
 var payrollRouter = require("./routes/payroll");
 var workscheduleRouter = require("./routes/workschedule");
 var attendanceRouter = require("./routes/attendance");
+var reportsRouter = require("./routes/reports");
 
 var app = express();
 app.locals.moment = require('moment');
@@ -78,6 +79,8 @@ app.use("/complaints", complaintsRouter);
 app.use('/payroll',payrollRouter);
 app.use('/workschedule',workscheduleRouter);
 app.use('/attendance',attendanceRouter);
+app.use('/reports',reportsRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

@@ -17,7 +17,8 @@ block content
             | Work Schedule                
         .ui.grid
             .sixteen.wide.column
-                a.ui.button(href="/workschedule/new") Add Work Schedule
+                if user.power == 1  
+                    a.ui.button(href="/workschedule/new") Add Work Schedule
             .three.wide.column
                 div(id="sidedate-container")
                     each cdate in datelist

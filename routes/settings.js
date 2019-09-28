@@ -4,9 +4,10 @@ const CtcCategory = require("../models/ctccategory");
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 router.get('/', ensureAuthenticated, (req, res) =>
-  res.render('access/settings/common', {
-    user: req.user
-  })
+  // res.render('access/settings/common', {
+  //   user: req.user
+  // })
+  res.redirect('/settings/ctccategory')
 );
 
 router.get('/ctccategory', ensureAuthenticated, (req, res) => {

@@ -1,0 +1,50 @@
+.menuparent .column{
+    text-align: center;
+}
+.menusampleitem{
+    display: inline-block;
+    height: 150px;
+    width: 80%;
+    cursor: pointer;
+    padding: 25px;
+}
+.menusampleitem:hover{
+    box-shadow:1px 1px 5px 1px #a19c9c;
+}
+.menusampleitem .icon{
+    font-size: 80px;    
+    margin: 0px;
+    margin-top: 20px;
+}
+.menusampleitem p{
+    font-size: 16px;
+    margin: 0px;
+    margin-top: -15px;
+}
+.item-color-one{
+    background-color: #ebedeb;
+}
+.item-color-two{
+    background-color: #ffbfbf;    
+}
+.item-color-three{
+    background-color: #c8ffbf;    
+}
+.item-color-four{
+    background-color: #bffff1;    
+}
+.item-color-five{
+    background-color: #bfe2ff;    
+}
+.item-color-six{
+    background-color: #bfc2ff;    
+}
+.item-color-seven{
+    background-color: #dfbfff;    
+}
+.item-color-eight{
+    background-color: #ffbffd;    
+}
+.item-color-nine{
+    background-color: #ffbfe0;    
+}

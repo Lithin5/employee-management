@@ -1,0 +1,45 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "reports" 
+block head
+    title Attendance Report
+block styles
+    link(rel='stylesheet' href='/datatables/DataTables-1.10.18/css/dataTables.semanticui.min.css')      
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Attendance Report
+    .ui.segment
+        - var activeitem = 'attendance'
+        include includes/topmenu
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Attendance Report 
+        .ui.grid
+            .maxwidthcol             
+                table.ui.table(id="attendancetable" )
+                    thead
+                        tr
+                            th Name
+                            th Date
+                            th Status
+                            th Expression
+                    tbody
+                        each atten in attendancedata
+                            tr
+                                td #{atten.userdata.name}                                
+                                td #{moment(atten.dtae).format('DD/MM/YYYY')}
+                                td #{atten.status}
+                                td #{atten.expression}
+    br
+
+block scripts
+    script(src="/datatables/DataTables-1.10.18/js/jquery.dataTables.min.js")
+    script(src="/datatables/DataTables-1.10.18/js/dataTables.semanticui.min.js")
+    script. 
+        $('#attendancetable').DataTable();
+
+        

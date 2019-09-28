@@ -1,0 +1,44 @@
+extends ../../accesslayout
+block nav 
+    - var actsidmenu = "reports" 
+block head
+    title Performance Report
+block styles
+    link(rel='stylesheet' href='/datatables/DataTables-1.10.18/css/dataTables.semanticui.min.css')      
+block content  
+    .ui.tiny.breadcrumb
+        a.section(href="/dashboard") Dashboard
+        i.right.chevron.icon.divider
+        .active.section Performance Report
+    .ui.segment
+        - var activeitem = 'performance'
+        include includes/topmenu
+        if success_msg && success_msg != ""             
+            .ui.success.message                
+                .header #{success_msg}
+        h4.ui.header.horizontal.divider
+            | Performance Report
+        .ui.grid
+            .maxwidthcol             
+                table.ui.table(id="performanctable" )
+                    thead
+                        tr
+                            th Name
+                            th Title
+                            th Description
+                            th Date
+                            th Status
+                    tbody
+                        each works in workschedule
+                            tr
+                                td #{works.userdetails.name}                                
+                                td #{works.title}
+                                td #{works.description}
+                                td #{moment(works.sentdate).format('DD/MM/YYYY')}
+                                td #{works.status}
+
+block scripts
+    script(src="/datatables/DataTables-1.10.18/js/jquery.dataTables.min.js")
+    script(src="/datatables/DataTables-1.10.18/js/dataTables.semanticui.min.js")
+    script. 
+        $('#performanctable').DataTable();

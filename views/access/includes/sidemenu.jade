@@ -9,9 +9,10 @@
   a.item.echo.myd-active(href="/dashboard" class=(actsidmenu == "dashboard"?"active":"" ))
     i.expand.icon.dash-icons
     |  Dashboard
-  a.item.echo.myd-active(href="/users" class=(actsidmenu == "users"?"active":"" ))
-    i.user.outline.icon.dash-icons
-    |  Users
+  if user.power == 1  
+    a.item.echo.myd-active(href="/users" class=(actsidmenu == "users"?"active":"" ))
+      i.user.outline.icon.dash-icons
+      |  Users
   a.item.echo.myd-active(href="/workschedule/index" class=(actsidmenu == "workschedule"?"active":"" ))
     i.clock.icon.dash-icons
     |  Work Schedule
@@ -30,9 +31,10 @@
   a.item.echo.myd-active(href="/complaints" class=(actsidmenu == "complaints"?"active":"" ))
     i.book.icon.dash-icons
     |  Complaints
-  a.item.echo.myd-active(href="/users" class=(actsidmenu == "w"?"active":"" ))
-    i.chart.bar.outline.icon.dash-icons
-    |  Reports
-  a.item.echo.myd-active(href="/settings" class=(actsidmenu == "settings"?"active":"" ))
-    i.cog.icon.dash-icons
-    |  Settings
+  if user.power == 1  
+    a.item.echo.myd-active(href="/reports" class=(actsidmenu == "reports"?"active":"" ))
+      i.chart.bar.outline.icon.dash-icons
+      |  Reports
+    a.item.echo.myd-active(href="/settings" class=(actsidmenu == "settings"?"active":"" ))
+      i.cog.icon.dash-icons
+      |  Settings
