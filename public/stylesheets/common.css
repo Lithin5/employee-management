@@ -127,3 +127,6 @@ body {
 #hiddenformsubmit{
   display: none;
 }
+.maxwidthcol{
+  width: 100%;
+}
